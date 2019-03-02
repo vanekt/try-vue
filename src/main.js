@@ -8,7 +8,7 @@ import colorDirective from './directives/color';
 
 Vue.config.productionTip = false;
 Vue.component('global-component', Global);
-Vue.directive('color-red', colorDirective);
+Vue.directive('colored', colorDirective);
 
 /* eslint-disable no-new */
 new Vue({

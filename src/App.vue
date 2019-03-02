@@ -4,7 +4,13 @@
     <router-view/>
     <global-component />
 
-    <p v-color-red>Red text</p>
+    <p
+      v-colored:background.delay="'red'"
+      v-colored:color="'green'"
+      v-if="isRedTextVisible"
+      v-bolder-font
+    >Red text</p>
+    <button @click="isRedTextVisible = !isRedTextVisible">Toggle</button>
 
     <counter :value="counter"></counter>
 
@@ -33,6 +39,7 @@ export default {
   name: 'App',
   data: () => ({
     counter: 0,
+    isRedTextVisible: true,
     cars: [
       {
         name: 'Ford',
@@ -52,6 +59,14 @@ export default {
   methods: {
     changeCounter() {
       this.counter = this.counter + 1;
+    },
+  },
+  directives: {
+    'bolder-font': {
+      bind(el) {
+        /* eslint-disable-next-line */
+        el.style.fontWeight = 'bold';
+      },
     },
   },
 };
