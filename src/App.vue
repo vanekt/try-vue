@@ -1,7 +1,12 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <router-view/>
+    <!--<router-view/>-->
+
+    <input type="text" v-model="searchName" />
+    <ul>
+      <li v-for="(name, idx) in filteredNames" :key="idx">{{name}}</li>
+    </ul>
+
     <global-component />
 
     <p
@@ -10,6 +15,7 @@
       v-if="isRedTextVisible"
       v-bolder-font
     >Red text</p>
+    <p>{{ 'some text' | uppercase }}</p>
     <button @click="isRedTextVisible = !isRedTextVisible">Toggle</button>
 
     <counter :value="counter"></counter>
@@ -34,9 +40,17 @@
 <script>
 import Car from './components/Car';
 import Counter from './components/Counter';
+import nameListMixin from './mixins/nameList';
 
 export default {
+  mixins: [
+    nameListMixin,
+  ],
   name: 'App',
+  components: {
+    car: Car,
+    counter: Counter,
+  },
   data: () => ({
     counter: 0,
     isRedTextVisible: true,
@@ -52,10 +66,6 @@ export default {
       },
     ],
   }),
-  components: {
-    car: Car,
-    counter: Counter,
-  },
   methods: {
     changeCounter() {
       this.counter = this.counter + 1;
@@ -69,6 +79,9 @@ export default {
       },
     },
   },
+  filters: {
+    uppercase: value => value.toUpperCase(),
+  },
 };
 </script>
 
@@ -77,7 +90,6 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
   margin-top: 60px;
 }
