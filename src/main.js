@@ -4,9 +4,11 @@ import Vue from 'vue';
 import App from './App';
 import Global from './components/Global';
 import router from './router';
+import colorDirective from './directives/color';
 
 Vue.config.productionTip = false;
 Vue.component('global-component', Global);
+Vue.directive('color-red', colorDirective);
 
 /* eslint-disable no-new */
 new Vue({
