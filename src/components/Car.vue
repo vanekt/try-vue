@@ -2,7 +2,7 @@
   <div class="car">
     <h1>{{name}} / {{ reverseName }}</h1>
     <p>{{year}}</p>
-    <button @click="changeCounter">Change counter</button>
+    <button @click="onChangeCounter">Change counter</button>
     <button @click="changeCounter2">Change counter2</button>
 
     <slot name="country"></slot>
@@ -24,7 +24,7 @@ export default {
       type: Number,
       default: 2019,
     },
-    changeCounter: Function,
+    onChangeCounter: Function,
   },
   computed: {
     reverseName() {
